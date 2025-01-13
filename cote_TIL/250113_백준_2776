@@ -1,0 +1,30 @@
+# 백준 2776 암기왕 
+
+- 푼 일자: 2025년 1월 13일 
+- 걸린 시간: 57분
+
+### 풀이법
+
+- 처음 백준으로 문제를 풀어보는거라 변수를 어떻게 받아야할지 몰랐음. `sys.stdin.readline`으로 받으면 됨.
+- `N_list`를 리스트로 받을 경우 시간복잡도가 높아져서, `set`으로 받아야 함
+- `_`는 변수 사용은 하지 않으나, 반복적으로 시행할 때 놓는 변수
+- 총 평: 간단하게 푸는 방식까지는 모두 생각했는데, 백준 사이트에서 제출하는 방법을 잘 몰라서 헤맸음
+
+```py
+import sys
+input = sys.stdin.readline
+
+T = int(input())
+
+for _ in range(T):
+    N = int(input())
+    N_list = set(map(int, input().split()))
+    M = int(input())
+    M_list = list(map(int, input().split()))
+    
+    for m in M_list:
+        if m in N_list:
+            print(1)
+        else:
+            print(0)
+```
