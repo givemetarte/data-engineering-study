@@ -12,4 +12,5 @@
 
 ### 스터디
 
-- [코딩테스트 준비를 위한 TIL](/coding_test)
+- [코딩테스트 준비를 위한 TIL](/coding_test/Algorithm_TIL)
+- [SQL 코테 준비를 위한 TIL](/coding_test/SQL_TIL)
