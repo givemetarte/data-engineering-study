@@ -12,5 +12,7 @@
 
 ### 스터디
 
+복습 시 난이도가 ⭐️⭐️인 건 매우 기본적인 알고리즘 문제이므로 반드시 확인하고 넘어가기 
+
 - [코딩테스트 준비를 위한 TIL](/coding_test/Algorithm_TIL)
 - [SQL 코테 준비를 위한 TIL](/coding_test/SQL_TIL)
