@@ -5,7 +5,7 @@
 본 기록은 매일 공부한 기록을 정리해놓은 공간입니다. [이 깃헙](https://github.com/yansfil/data-engineering-study)을 참고해 공부한 것을 정리합니다. 
 
 ### 기본 CS 지식 
-- [자료구조](/CS/data_structure.md)
+- [자료구조](/computer-science/data-structure.md)
 - TBD
 
 ### 데이터 
@@ -17,9 +17,9 @@
 
 #### 요약
 
-- [알고리즘 요약](/coding_test/algorithm_summary.md)
-- [SQL 요약](/coding_test/sql_summary.md)
+- [알고리즘 요약](/coding-test/algorithm-summary.md)
+- [SQL 요약](/coding-test/sql-summary.md)
 
 #### TIL
-- [코딩테스트 준비를 위한 TIL](/coding_test/Algorithm_TIL)
-- [SQL 코테 준비를 위한 TIL](/coding_test/SQL_TIL)
+- [코딩테스트 준비를 위한 TIL](/coding-test/Algorithm-TIL)
+- [SQL 코테 준비를 위한 TIL](/coding-test/SQL-TIL)
