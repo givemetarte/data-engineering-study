@@ -5,6 +5,7 @@
 본 기록은 매일 공부한 기록을 정리해놓은 공간입니다. [이 깃헙](https://github.com/yansfil/data-engineering-study)을 참고해 공부한 것을 정리합니다. 
 
 ### 기본 CS 지식 
+- [자료구조](/CS/data_structure.md)
 - TBD
 
 ### 데이터 
