@@ -1,5 +1,11 @@
 # 알고리즘 정리 
 
+### 목록
+
+- [이진 탐색](#이진-탐색-binary-search)
+- [BFS](#bfs-breath-first-search-넓이우선-탐색)
+- [DFS](#dfs-depth-first-search-깊이우선-탐색)
+
 ### 이진 탐색 (Binary Search)
 
 - 배열 내부의 데이터가 정렬되어 있을 때 사용할 수 있는 알고리즘
@@ -96,3 +102,45 @@ visited = [False] * 9
 
 bfs(graph, 1, visited)
 ```
+
+### 선택 정렬 (Selection Sort)
+
+- 가장 작은 것을 선택에 앞으로 보내는 과정을 반복적으로 수행
+- 시간 복잡도는 O(N^2)로, 데이터의 개수가 10,000개 이상이면 정렬 속도가 급격히 느려짐
+- 특정 리스트에서 가장 작은 데이터를 찾는 일이 코딩 테스트에서 잦으므로 익숙해질 필요가 있음
+
+```py
+array = [7,5,9,0,3,1,6,2,4,8]
+
+for i in range(len(array)):
+    min_index = i
+    for j in range(i+1, len(array)):
+        if array[min_index] > array[j]:
+            min_index = j
+    array[i], array[min_index] = array[min_index], array[i]
+
+print(array)
+```
+
+### 삽입 정렬 (Insertion Sort)
+
+- 특정한 데이터를 적절한 위치에 삽입하는 방식으로, 특정한 데이터가 적절한 위치에 들어가기 전까지 그 앞의 데이터는 이미 정렬되어 있다고 가정함
+- 시간 복잡도는 O(N^2)이지만, 선택 정렬과 비교했을 때 현재 리스트의 데이터가 거의 정렬되어 있는 상태라면 매우 빠르게 동작함
+
+```py
+array = [7,5,9,0,3,1,6,2,4,8]
+
+for i in range(1, len(array)):
+    for j in range(i, 0, -1):  # 인덱스 i부터 1까지 감소하며 반복하는 문법
+        if array[j] < array[j-1]:
+            array[j]], array[j-1] = array[j-1], array[j]
+        else:
+            break
+
+print(array)
+```
+
+### 퀵 정렬 (Quick Sort)
+
+### 계수 정렬 (Count Sort)
+
