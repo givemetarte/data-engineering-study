@@ -1,4 +1,4 @@
-# LeetCode Two Pointer 문제
+# LeetCode Stack 문제
 
 - 푼 일자: 2025년 2월 6일
 - 알고리즘: Stack
