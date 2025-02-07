@@ -158,15 +158,6 @@ for i in range(1, len(array)):
 print(array)
 ```
 
-### 라이브러리를 활용한 정렬
-
-- 튜플인 경우 정렬하기 
-
-```py
-array = [('홍길동', 95), ('이순신', 77)]
-sorted_array = sorted(array, key=lambda x: x[1])
-```
-
 #### 퀵 정렬 (Quick Sort)
 
 - 가장 많이 사용되는 정렬 알고리즘
@@ -217,6 +208,14 @@ for i in range(len(count)):
         print(i, end=' ') # 띄어쓰기를 구분으로 등장한 횟수만큼 인덱스 출력
 ```
 
+#### 라이브러리를 활용한 정렬
+
+- 튜플인 경우 정렬하기 
+
+```py
+array = [('홍길동', 95), ('이순신', 77)]
+sorted_array = sorted(array, key=lambda x: x[1])
+```
 
 ### 이진 탐색 (Binary Search)
 
