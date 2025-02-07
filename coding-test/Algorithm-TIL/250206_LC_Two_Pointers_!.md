@@ -131,3 +131,21 @@ class Solution:
                 answer += word2[i]
         return answer
 ```
+
+### Remove Duplicates from Sorted Array
+
+- link: https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/
+- 아이디어: 둘의 자리를 바꾸는게 아니라 고정된 값을 다른 값으로 땡겨와주는 것! 
+
+```py
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        if len(nums) == 0: return 0
+
+        i = 0 # 고정포인터
+        for j in range(1, len(nums)): # 이동포인터
+            if nums[i] != nums[j]:
+                i += 1
+                nums[i] = nums[j]
+        return i+1
+```

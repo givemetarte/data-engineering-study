@@ -2,10 +2,15 @@
 
 ### 목록
 
+- [Array & Hash](#array--hash)
+- [투 포인터](#투-포인터-two-pointer)
+- [슬라이딩 윈도우](#슬라이딩-윈도우-sliding-window)
+- [스택과 큐](#스택과-큐-stack--queue)
 - [정렬](#정렬-sort)
 - [이진 탐색](#이진-탐색-binary-search)
 - [BFS](#bfs-breath-first-search-넓이우선-탐색)
 - [DFS](#dfs-depth-first-search-깊이우선-탐색)
+- [다이나믹 프로그래밍](#다이나믹-프로그래밍-dynamic-programming)
 
 ### Array & Hash
 
@@ -29,11 +34,10 @@ class Solution:
         return countS == countT
 ```
 
-
-
 ### 투 포인터 (Two Pointer)
 
 - 리스트에 순차적으로 접근해야 할 때 2개의 점의 위치를 기록하면서 처리하는 알고리즘을 의미함
+- 주로 '정렬이 된 배열'을 대상으로 투 포인터를 사용함
 - 리스트에 담긴 데이터에 순차적으로 접근해야 할 때는 '시작점'과 '끝점' 2개의 점으로 접근할 데이터의 범위를 표현할 수 있음! 
 - 투 포인터 알고리즘을 활용해 '특정한 합을 가지는 부분 연속 수열 찾기'를 풀 수 있음 
 
@@ -103,6 +107,19 @@ def solution(nums1, nums2, n, m):
     return answer
 ```
 
+### 슬라이딩 윈도우 (Sliding Window)
+
+- 슬라이딩 윈도우란 고정 사이즈의 윈도우가 이동하면서 윈도우 내에 있는 데이터를 이용해 문제를 풀이하는 알고리즘을 의미함
+- 정렬이 된 배열에 사용하는 투 포인터와 달리, 슬라이딩 윈도우는 정렬 여부에 관계없이 활용된다는 차이가 있음
+- 윈도우 사이즈는 고정이며, 좌 또는 우 한쪽 방향으로만 이동함
+
+
+### 스택과 큐 (Stack & Queue)
+
+- 스택은 LIFO(Last-In-First-Out, 후입선출)로, 가장 마지막에 넣은 요소를 가장 먼저 꺼냄
+- 큐는 FIFO(First-In-First-Out, 선입선출)로, 가장 처음에 넣은 요소를 가장 먼저 꺼냄
+
+
 ### 정렬 (Sort)
 #### 선택 정렬 (Selection Sort)
 
@@ -114,7 +131,7 @@ def solution(nums1, nums2, n, m):
 array = [7,5,9,0,3,1,6,2,4,8]
 
 for i in range(len(array)):
-    min_index = i
+    min_index = i  # 가장 작은 원소의 인덱스
     for j in range(i+1, len(array)):
         if array[min_index] > array[j]:
             min_index = j
@@ -141,11 +158,64 @@ for i in range(1, len(array)):
 print(array)
 ```
 
+### 라이브러리를 활용한 정렬
+
+- 튜플인 경우 정렬하기 
+
+```py
+array = [('홍길동', 95), ('이순신', 77)]
+sorted_array = sorted(array, key=lambda x: x[1])
+```
+
 #### 퀵 정렬 (Quick Sort)
+
+- 가장 많이 사용되는 정렬 알고리즘
+- 기준 데이터(= 피벗)을 설정하고 그 기준보다 큰 데이터와 작은 데이터의 위치를 바꾸는 방식
+- 퀵 정렬이 끝나는 조건은 현재 리스트의 데이터 개수가 1인 경우 (이미 정렬되어 있고 분할 불가능)
+- 퀵 정렬의 평균 시간 복잡도는 O(NlogN)이지만, 최악의 경우 시간복잡도가 O(N^2)이 됨
+    - 이미 데이터가 정렬이 되어 있는 경우는 매우 느리게 동작함
+
+```py
+array = [7,5,9,0,3,1,6,2,4,8]
+
+def quick_sort(array):
+    # 리스트가 하나 이하의 원소만을 담고 있다면 종료
+    if len(array) <= 1:
+        return array
+    
+    pivot = array[0] # 피벗은 가장 첫번째 원소
+    tail = array[1:] # 피벗을 제외한 리스트 
+
+    left_side = [x for x in tail if x <= pivot] # 분할된 왼쪽 부분
+    right_side = [x for x in tail if x > pivot] # 분할된 오른쪽 부분
+
+    # 분할 이후 왼쪽과 오른쪽 부분에서 각각 정렬을 수행하고, 전체 리스트를 반환
+    return quick_sort(left_side) + [pivot] + quick_sort(right_side)
+
+print(quick_sort(array))
+```
 
 #### 계수 정렬 (Count Sort)
 
+- 데이터의 크기 범위(정수, 1,000,000)가 제한되어 정수 형태로 표현되어 있을 때만 유효
+    - 예를 들어, 0 이상 100 이하인 성적 데이터를 정렬할 때 계수 정렬이 효과적
+- 일반적으로 별도의 리스트를 선언하고 그안에 정렬에 대한 정보를 담기 때문에 데이터의 크기가 한정됨
+- 모든 데이터가 양의 정수인 상황에서 데이터의 개수를 N, 데이터의 최댓값을 K라고 할 때 시간복잡도는 O(N+K)
 
+```py
+array = [7,5,9,0,3,1,6,2,4,8]
+
+# 모든 범위를 포함하는 리스트 선언 (모든 값은 0으로 초기화)
+# 리스트에서 가장 큰 값을 찾고 인덱스로 표현되기 때문에 1 추가
+count = [0] * (max(array)+1)
+
+for i in range(len(array)):
+    count[array[i]] += 1
+
+for i in range(len(count)):
+    for j in range(count[i]):
+        print(i, end=' ') # 띄어쓰기를 구분으로 등장한 횟수만큼 인덱스 출력
+```
 
 
 ### 이진 탐색 (Binary Search)
@@ -243,6 +313,30 @@ graph = [
 visited = [False] * 9
 
 bfs(graph, 1, visited)
+```
+
+### 다이나믹 프로그래밍 (Dynamic Programming)
+
+- 완전 탐색으로 풀기 어려울 때, 다음 조건을 만족하면 다이나믹 프로그래밍을 사용할 수 있음 
+    1. 큰 문제를 작은 문제로 나눌 수 있다.
+    2. 작은 문제에서 구한 정답은 그것을 포함하는 큰 문제에서도 동일하다.
+- 피보나치 수열과 같이 점화식으로 표현가능한 문제에 대해 다이나믹 프로그래밍을 적용할 수 있음 
+- 다음과 같이 중간 값을 저장할 dp 테이블을 만듦!
+
+```py
+# 앞서 계산된 결과를 저장하기 위한 DP 테이블 초기화
+dp = [0] * 100
+
+# 첫번째, 두번째 피보나치 수는 1
+dp[1] = 1
+dp[2] = 1
+n = 99
+
+# 피보나치 함수 반복문으로 구현 (보텀업 다이나믹 프로그래맹)
+for i in range(3, n+1):
+    dp[i] = dp[i-1] + dp[i-2]
+
+print(dp[n])
 ```
 
 ### 기타 파이썬 문법
