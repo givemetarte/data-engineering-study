@@ -18,7 +18,11 @@
 - 해시 테이블이란 해시함수를 사용해 키를 해시값으로 매핑하고, 이 해시값을 인덱스 삼아 데이터의 값을 키와 함께 저장하여 검색을 빠르게 하기 위한 자료 구조 
 - 단순히 말해, 키와 값을 쌍으로 저장하는 자료구조이고, 파이썬에서 dict 타입이 해시테이블을 기반으로 만들어진 자료구조
 - 이 자료구조의 주요 특징은 빠른 검색, 삽입, 삭제로, 해시 함수를 이용해 데이터의 저장위치를 빠르게 계산해서 매우 효율적인 성능을 보임
-- 아래 예시는 문자별 등장횟수를 해시테이블을 활용해 구하는 방법! 
+
+
+- 아래 예시는 [문자별 등장횟수를 해시테이블을 활용](https://neetcode.io/problems/is-anagram)해 구하는 방법! 
+    - 개별 문자와 등장횟수를 key-value 형태로 저장
+    - `dict.get(x, 0)`은 x가 key인 value를 가져오지만 없다면 0으로 출력이란 의미
 
 ```py
 class Solution:
@@ -39,6 +43,8 @@ class Solution:
 - 리스트에 순차적으로 접근해야 할 때 2개의 점의 위치를 기록하면서 처리하는 알고리즘을 의미함
 - 주로 '정렬이 된 배열'을 대상으로 투 포인터를 사용함
 - 리스트에 담긴 데이터에 순차적으로 접근해야 할 때는 '시작점'과 '끝점' 2개의 점으로 접근할 데이터의 범위를 표현할 수 있음! 
+
+
 - 투 포인터 알고리즘을 활용해 '특정한 합을 가지는 부분 연속 수열 찾기'를 풀 수 있음 
 
 ```py
@@ -62,48 +68,32 @@ print(count)
 ```
 
 - 투 포인터 알고리즘을 활용해 '정렬되어 있는 두 리스트의 합집합'(정렬된 합집합 구하기)을 풀수 있음 
+    - 거꾸로 정렬하는 것도 기억하기! 
 
 ```py
-# nums1에 num2를 포함해 정렬하기
-class Solution:
-    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        """
-        Do not return anything, modify nums1 in-place instead.
-        """
-        i = m-1
-        j = n-1
-        k = m+n-1
-
-        while j >= 0:  # j가 -1이 되면 모든 인자를 다 정렬한 것이니까! 
-            if i >= 0 and nums1[i] > nums2[j]:
-                nums1[k] = nums1[i]
-                i -= 1
-            else:
-                nums1[k] = nums2[j]
-                j -= 1
-            k -= 1
-```
-```py
-# nums1과 nums2를 정렬한 새로운 배열 생성하기
 def solution(nums1, nums2, n, m):
-    answer = [0] * (n+m)
-    i = n -1
-    j = m -1
-    k = n+m-1
+    answer = [0] * (n+m)  # 새로운 배열을 n+m 크기로 초기화
+    i = n -1  # nums1의 마지막 원소 인덱스
+    j = m -1  # nums2의 마지막 원소 인덱스
+    k = n+m-1 # answer 배열의 마지막 원소 인덱스
 
-    while i >= 0 and j >= 0:  # and 조건인 것을 잊지 말기! 
-        if nums1[i] >= nums2[j]:
-            answer[k] = nums1[i]
-            i -= 1
+    while i >= 0 and j >= 0:  # 두 리스트의 원소를 모두 확인할 때까지 반복
+        if nums1[i] >= nums2[j]:  
+            answer[k] = nums1[i]  # 더 큰 값을 answer의 뒤쪽에 삽입
+            i -= 1  # nums1에서 다음 값 비교
         else:
-            answer[k] = nums2[j]
-            j -= 1
-        k -= 1
+            answer[k] = nums2[j]  # nums2 값이 더 크면 해당 값 삽입
+            j -= 1  # nums2에서 다음 값 비교
+        k -= 1  # answer의 다음 위치로 이동
     
+    # nums1의 모든 원소가 answer에 추가되었고 nums2의 원소가 남아있는 경우
     if i < 0: 
         answer[:k+1] = nums2[:k+1]
+    
+    # nums2의 모든 원소가 answer에 추가되었고 nums1의 원소가 남아있는 경우
     if j < 0:
         answer[:k+1] = nums1[:k+1]
+    
     return answer
 ```
 
